@@ -60,7 +60,7 @@ useEffect(() => {
       resetTurn()
     } else {
      
-      resetTurn()
+      setTimeout(() => resetTurn(), 1000)
     }
   }
 }, [choiceTwo, choiceTwo])
@@ -84,8 +84,7 @@ useEffect(() => {
           key={card.id} 
           card={card}
           handleChoice={handleChoice}
-          flipped = {
-            card === choiceOne || card === choiceTwo || card.matched}
+          flipped = {card === choiceOne || card === choiceTwo || card.matched}
           />
         ))}
 
