@@ -16,6 +16,8 @@ const cardImages = [
 function App() {
   const [cards, setCards] =useState([])
   const [turns, setTurns] = useState(0)
+  const [choiceOne, setChoiceOne] = useState(null)
+  const [choiceTwo, setChoiceTwo] = useState(null)
 
   // shuffle cards : creat a fucntion inside the component to do 3 things. Duplicate cards array of
   // 12 instead of 6 use spread syntax ...in array six ...in array
@@ -34,14 +36,25 @@ function App() {
   }
 // need on click to call shufflecards function
 // create div( with key) with class to style and map card state  {}
-console.log(cards, turns)
+
+
+//handle a choice
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+
+  }
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffledCards}>New Game</button>
       <div className="card-grid">
         {cards.map(card => (
-         <SingleCard key={card.id} card={card}/>
+         <SingleCard
+          key={card.id} 
+          card={card}
+          handleChoice={handleChoice}
+          />
         ))}
 
 
