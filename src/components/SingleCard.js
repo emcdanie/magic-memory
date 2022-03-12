@@ -1,7 +1,7 @@
 import "./SingleCard.css"
 
 // dont need key property in this component as the .map is inthe all.js
-export default function SingleCard({card, handleChoice}){
+export default function SingleCard({card, handleChoice, flipped}){
 
 const handleClick = () => {
   handleChoice(card)
@@ -9,7 +9,7 @@ const handleClick = () => {
 
     return(
   <div className="card">
-            <div> 
+            <div className={flipped ? "flipped" : " "} > 
               <img className="front" src={card.src} alt="card front" />
               <img className="back" 
               src="img/cover.png"  
