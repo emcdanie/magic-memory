@@ -1,10 +1,12 @@
 import "./SingleCard.css"
 
 // dont need key property in this component as the .map is inthe all.js
-export default function SingleCard({card, handleChoice, flipped}){
+export default function SingleCard({card, handleChoice, flipped, disabled}){
 
 const handleClick = () => {
+  if (!disabled){
   handleChoice(card)
+  }
 }
 
     return(

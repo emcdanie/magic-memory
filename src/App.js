@@ -18,6 +18,7 @@ function App() {
   const [turns, setTurns] = useState(0)
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
+  const [disabled, setDisabled ] = useState(false)
 
   // shuffle cards : creat a fucntion inside the component to do 3 things. Duplicate cards array of
   // 12 instead of 6 use spread syntax ...in array six ...in array
@@ -44,8 +45,10 @@ function App() {
 
   }
 //compare 2 selected cards
+
 useEffect(() => {
   if (choiceOne && choiceTwo){
+    setDisabled(true)
 
    if (choiceOne.src === choiceTwo.src){
      setCards(prevCards => {
@@ -59,8 +62,7 @@ useEffect(() => {
      })
       resetTurn()
     } else {
-     
-      setTimeout(() => resetTurn(), 1000)
+     setTimeout(() => resetTurn(), 1000)
     }
   }
 }, [choiceTwo, choiceTwo])
@@ -73,6 +75,7 @@ useEffect(() => {
   setChoiceOne(null)
   setChoiceTwo(null)
   setTurns(prevTurns => prevTurns +1 )
+  setDisabled(false)
 }
   return (
     <div className="App">
@@ -85,6 +88,7 @@ useEffect(() => {
           card={card}
           handleChoice={handleChoice}
           flipped = {card === choiceOne || card === choiceTwo || card.matched}
+          disabled={disabled}
           />
         ))}
 
